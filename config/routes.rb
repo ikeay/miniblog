@@ -1,4 +1,12 @@
 Miniblog::Application.routes.draw do
+  get "home" => "pages#home"
+  get "about" => "pages#about"
+  get "privacy" => "pages#privacy"
+  get "terms" => "pages#terms"
+  get "help" => "pages#help"
+ 
+  root :to => "pages#home"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
