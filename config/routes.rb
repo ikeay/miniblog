@@ -1,8 +1,16 @@
 Miniblog::Application.routes.draw do
+  resources :favorites, :only =>[:create, :destroy]
+
+  resources :tweets, :only => [:show, :create, :destroy]
+
   devise_for :users, :controllers => {
   	:registrations => "users/registrations",
   	:sessions => "users/sessions"
   }
+  
+  resources :users, :only => [:index, :show] do
+  	get "favorites", :on => :member
+  end
 
   get "home" => "pages#home"
   get "about" => "pages#about"

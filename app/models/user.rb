@@ -1,4 +1,9 @@
 class User < ActiveRecord::Base
+  has_many :favorites, :dependent => :destroy
+  has_many :tweets, :dependent => :destroy
+#validates :username, :presence => true 
+#validates :username, :uniqueness => { :case_sensitive => false }#validates :username, :format => { :with => /^[A-Za-z][0-9A-Za-z__-]+$/ } #validates :username, :length => { :in => 4..16 }
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -6,8 +11,6 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,  :username, :bio
-validates :username, :presence => true 
-validates :username, :uniqueness => { :case_sensitive => false }validates :username, :format => { :with => /^[A-Za-z][0-9A-Za-z__-]+$/ } validates :username, :length => { :in => 4..16 }
 
  def update_with_password(params={})
  	params.delete(:current_password)

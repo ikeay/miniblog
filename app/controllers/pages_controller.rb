@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def home
+  	@tweets = Tweet.order("created_at DESC")
   end
 
   def about
