@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
   has_many :favorites, :dependent => :destroy
   has_many :tweets, :dependent => :destroy
 validates :username, :presence => true 
-validates :username, :uniqueness => { :case_sensitive => false }#validates :username, :format => { :with => /^[A-Za-z][0-9A-Za-z__-]+$/ } 
+validates :username, :uniqueness => { :case_sensitive => false }
+#validates :username, :format => { :with => /^[A-Za-z][0-9A-Za-z__-]+$/ } 
 validates :username, :length => { :in => 4..16 }
 
   # Include default devise modules. Others available are:
