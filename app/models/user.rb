@@ -1,8 +1,13 @@
 class User < ActiveRecord::Base
+  has_many :friendships
+  has_many :friends, :through => :friendships
+  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+  has_many :inverse_friends, :through => :inverse_friendships, :source => :user  
   has_many :favorites, :dependent => :destroy
   has_many :tweets, :dependent => :destroy
-#validates :username, :presence => true 
-#validates :username, :uniqueness => { :case_sensitive => false }#validates :username, :format => { :with => /^[A-Za-z][0-9A-Za-z__-]+$/ } #validates :username, :length => { :in => 4..16 }
+validates :username, :presence => true 
+validates :username, :uniqueness => { :case_sensitive => false }#validates :username, :format => { :with => /^[A-Za-z][0-9A-Za-z__-]+$/ } 
+validates :username, :length => { :in => 4..16 }
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
