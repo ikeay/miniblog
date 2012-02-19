@@ -4,6 +4,7 @@
 	<small>(<%= link_to time_ago_in_words(tweet.created_at)+" ago", tweet %> )</small>
 	<% if user_signed_in? %>
 		<% if current_user == tweet.user %>
+			<%#= link_to "Delete", tweet, :method => "delete", remote => true %>
 			<%= link_to "Delete", tweet, :method => "delete" %>
 		<% else %>
 			<%= link_to "Retweet", retweet_tweet_path(tweet), :method => "post" %>

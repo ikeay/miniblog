@@ -42,7 +42,7 @@ before_filter :authenticate_user!, :only => [:create, :destroy]
   # POST /friendships
   # POST /friendships.json
   def create
-    @friendship = current_user.friendship.build(:friend_id => params[:friend_id])
+    @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
 	if @friendship.save
 		flash[:notice] = 'Friendship was successfully created.'
 	else
@@ -89,3 +89,4 @@ before_filter :authenticate_user!, :only => [:create, :destroy]
     # end
  # end
  end
+end
