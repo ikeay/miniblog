@@ -3,6 +3,14 @@
 		<div>
 			<%= link_to user.username, user %>
 			<%= user.bio %>
+			<%= link_to_follow(user)%>
 		</div>
 	<% end %>
+	
+	<% unless @users.nil? %>
+	<div id="users">
+		<%= render @users%>
+	</div>
+<% end %>
+
 </div>

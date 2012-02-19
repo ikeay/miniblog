@@ -1,14 +1,20 @@
 Miniblog::Application.routes.draw do
+  resources :friendships, :only => [:create, :destroy]
+
   resources :favorites, :only =>[:create, :destroy]
 
-  resources :tweets, :only => [:show, :create, :destroy]
-
+resources :tweets, :only => [:show, :create, :destroy] do
+  	post :retweet, :on => :member
+end
+	
   devise_for :users, :controllers => {
   	:registrations => "users/registrations",
   	:sessions => "users/sessions"
   }
   
   resources :users, :only => [:index, :show] do
+  	get "following", :on => :member
+  	get "followers", :on => :member
   	get "favorites", :on => :member
   end
 

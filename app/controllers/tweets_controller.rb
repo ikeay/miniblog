@@ -32,4 +32,11 @@ before_filter :authenticate_user!, :only=>[:show, :create, :destroy]
       #format.json { head :no_content }
     #end
   end
+  
+  def retweet
+  	original_tweet = Tweet.find(params[:id])
+  	flash[:notice] = original_tweet.retweet_by(current_user)
+  	redirect_to root_path
+  end
+  
 end
