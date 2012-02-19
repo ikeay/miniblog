@@ -1,6 +1,5 @@
 <% if user_signed_in? %>
-	<%#= form_for(Tweet.new, :remote=> true) do |f| %>
-	<%= form_for(Tweet.new) do |f| %>
+	<%= form_for(Tweet.new, :remote=> true) do |f| %>
 	<%= f.text_area :content, :size => "60x3" %>
 	<%= f.submit "Tweet", :disable_with => "Tweeting..." %>
     <% end %>
